@@ -1,0 +1,62 @@
+C51 COMPILER V9.54   MAIN                                                                  10/03/2017 22:40:14 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main.ls
+                    -t) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include"reg52.h"
+   2          sbit spk=P0^0;
+   3          unsigned char frq;
+   4          void inittimer()
+   5          {
+   6   1        TMOD|=0x01;
+   7   1        EA=1;
+   8   1        ET0=1;
+   9   1        TR0=1;
+  10   1      }
+  11          void delay(unsigned int i)
+  12          {
+  13   1        while(i--);
+  14   1      }
+  15          void main()
+  16          {
+  17   1        unsigned char i;
+  18   1        inittimer();
+  19   1        while(1)
+  20   1        {
+  21   2          frq=0;
+  22   2          for(i=0;i<60;i++)
+  23   2          {
+  24   3            delay(1000);
+  25   3          }
+  26   2          frq=100;
+  27   2          for(i=0;i<60;i++)
+  28   2          {
+  29   3            delay(1000);
+  30   3          }
+  31   2        }
+  32   1      }
+  33          void timer() interrupt 1 
+  34          {
+  35   1        TH0=0xfe;
+  36   1        TL0=frq;
+  37   1        spk=!spk;
+  38   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     69    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

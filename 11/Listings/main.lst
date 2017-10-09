@@ -1,0 +1,48 @@
+C51 COMPILER V9.54   MAIN                                                                  10/02/2017 12:29:22 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main.ls
+                    -t) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include"reg52.h"
+   2          sbit LAT1=P2^0;
+   3          sbit LAT2=P2^1;
+   4          unsigned char code sumaguan[16]={0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90,0x88,0x83,0xc6,0xa1,0x8
+             -6,0x8e
+   5          };
+   6          void delay(unsigned int i)
+   7          {
+   8   1        while(i--);
+   9   1      }
+  10          
+  11          void main()
+  12          {
+  13   1        
+  14   1        while(1)
+  15   1        {
+  16   2          P0=0xfe;
+  17   2          LAT1=1;
+  18   2          LAT1=0;
+  19   2          P0=~0xf9;
+  20   2          LAT2=1;
+  21   2          LAT2=0;
+  22   2        }
+  23   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     27    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

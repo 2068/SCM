@@ -1,0 +1,33 @@
+#include"reg52.h"
+sbit LED=P1^0;
+int i=0;
+unsigned char code sumaguan[16]={0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90,0x88,0x83,0xc6,0xa1,0x86,0x8e
+};
+void Init_Timer0()
+{
+	TMOD|=0x01;
+	TH0=0x00;
+	TL0=0x00;
+	EA=1;
+	ET0=1;
+	TR0=1;
+}
+
+void main()
+{
+	Init_Timer0();
+	while(1)
+	{
+		
+	}
+}
+
+void Timer0() interrupt 1 
+{
+	TH0=0x00;
+	TL0=0x00;
+	P0=sumaguan[i];
+	i++;
+	if(i==17)
+		i=0;
+}

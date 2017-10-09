@@ -1,0 +1,58 @@
+C51 COMPILER V9.54   MAIN                                                                  10/02/2017 19:12:08 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main.ls
+                    -t) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include"reg52.h"
+   2          sbit LED=P1^0;
+   3          int i=0;
+   4          unsigned char code sumaguan[16]={0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90,0x88,0x83,0xc6,0xa1,0x8
+             -6,0x8e
+   5          };
+   6          void Init_Timer0()
+   7          {
+   8   1        TMOD|=0x01;
+   9   1        TH0=0x00;
+  10   1        TL0=0x00;
+  11   1        EA=1;
+  12   1        ET0=1;
+  13   1        TR0=1;
+  14   1      }
+  15          
+  16          void main()
+  17          {
+  18   1        Init_Timer0();
+  19   1        while(1)
+  20   1        {
+  21   2          
+  22   2        }
+  23   1      }
+  24          
+  25          void Timer0() interrupt 1 
+  26          {
+  27   1        TH0=0x00;
+  28   1        TL0=0x00;
+  29   1        P0=sumaguan[i];
+  30   1        i++;
+  31   1        if(i==17)
+  32   1          i=0;
+  33   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     77    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
