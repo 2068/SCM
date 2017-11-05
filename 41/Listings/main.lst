@@ -1,0 +1,61 @@
+C51 COMPILER V9.54   MAIN                                                                  10/27/2017 11:08:25 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main.ls
+                    -t) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include"reg52.h"
+   2          #include"intrins.h"
+   3          sbit IN_PL=P1^6;
+   4          sbit IN_Data=P1^7;
+   5          sbit SCK=P3^6;
+   6          char Read()
+   7          {
+   8   1        char i,indata;
+   9   1        IN_PL=0;
+  10   1        _nop_();
+  11   1        IN_PL=1;
+  12   1        _nop_();
+  13   1        indata=0;
+  14   1        for(i=0;i<8;i++)
+  15   1        {
+  16   2          indata=indata<<1;
+  17   2          SCK=0;
+  18   2          _nop_();
+  19   2          indata|=IN_Data;
+  20   2          SCK=1;
+  21   2        }
+  22   1        return indata;
+  23   1      }
+  24          void main()
+  25          {
+  26   1        unsigned char i;
+  27   1        P0=0;
+  28   1        while(1)
+  29   1        {
+  30   2          i=Read();
+  31   2          if(i!=0xff)
+  32   2          {
+  33   3            P0=~i;  
+  34   3          }
+  35   2        }
+  36   1      }
+  37          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     45    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
